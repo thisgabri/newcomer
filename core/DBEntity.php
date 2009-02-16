@@ -104,7 +104,8 @@ class DBEntity implements Entity{
 	}
 	
 	/**
-	 * Setta/Modifica il valore di un campo del record
+	 * Setta/Modifica il valore di un campo del record, questa modifica viene effettuata solo sull'oggetto
+	 * per applicare tutte le modifiche anche su database si deve chiamare la funzione commit()
 	 * 
 	 * @param $index
 	 * @param $value
@@ -215,11 +216,12 @@ class DBEntity implements Entity{
 	/**
 	 * Elimina questo record dal database
 	 * 
-	 * @todo
+	 * @throws DBException
 	 */
 	public function cancel(){
-		//TODO
 		
+		$mysql_query = "DELETE FROM `$this->table` WHERE `$this->table`.`$this->primary_key` = $this->id LIMIT 1";
+		$this->db_wrapper->query($mysql_query);
 	}
 	
 	/**
@@ -257,13 +259,14 @@ class DBEntity implements Entity{
 	 * 
 	 * @param DB $db_wrapper
 	 * @param $table_name
+	 * @param $primary_key
 	 * @param $id
 	 * 
-	 * @todo
+	 * @return 
 	 */
-	public static function getFromId(DB $db_wrapper, $table_name, $id){
-		//TODO
+	public static function getFromId(DB $db_wrapper, $table_name, $primary_key, $id){
 		
+		return new DBEntity($db_wrapper, $table_name, $primary_key, $id);
 	}
 	
 	/**

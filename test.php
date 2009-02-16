@@ -50,4 +50,6 @@ $entity->set("prova_numero", 5);
 
 //salvo i cambiamenti
 $entity->commit();
+
+$entity->cancel();
 ?>

@@ -4,7 +4,7 @@
  * configurazione del database. L'utilizzo di variabili di istanza e' deprecata e quindi potrebbe non essere *
  * piu' supportata nelle versioni successive.																 *
  *  																										 *
- * @var costanti di configurazione (versione e nome di default del database									 *
+ * @var costanti di configurazione (versione e nome di default del database)								 *
  * @var "paths" 		indirizzi assoluti dei file appartenenti al core									 *
  * @var "scripts" 		indirizzi assoluti dei file di script												 *
  * @var "directories" 	indirizzi assoluti per le directories dove verranno memorizzate le foto uploadate	 *
