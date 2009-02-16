@@ -28,9 +28,17 @@ $sessions_query = "CREATE TABLE `$db_wrapper->t_sessions` (
   					PRIMARY KEY  (`session_id`)
 				) ENGINE=MyISAM DEFAULT CHARSET=latin1;";
 				
+$test_query = "CREATE TABLE `test_table` (
+  				`test_id` int(32) NOT NULL auto_increment,
+  				`test_number` int(11) NOT NULL,
+  				`test_string` varchar(24) NOT NULL,
+  				PRIMARY KEY  (`test_id`)
+			) ENGINE=MyISAM  DEFAULT CHARSET=latin1";
+				
 try{
 	$db_wrapper->query($users_query);
 	$db_wrapper->query($sessions_query);
+	$db_wrapper->query($test_query);
 	echo "Database inizializzato con successo. Elimina lo script.";
 	
 } catch(DBException $e){

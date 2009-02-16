@@ -11,45 +11,40 @@
 require_once "config.php";
 require_once DB;
 require_once DBENTITY;
-require_once SESSION;
 
+// create the new DB
 $db_wrapper = new DB($db_config);
 
-/**
- * Prova Session
- */
-if(Session::acceptJavascript())
-	echo "Javascript abilitato<br />";
-else echo "Javascript non abilitato<br />";
-
-echo "<h3>Prova funzioni statiche della classe DBEntity</h3>";
-echo "Numero di record nella tabella di prova: ".DBEntity::count($db_wrapper, "nerdstart_prova")."<br />";
+echo "<h3>Test for the DBEntity class functions</h3>";
+echo "Number of records in the test table: ".DBEntity::count($db_wrapper, "test_table")."<br />";
 
 /**
  * Prova DBEntity
  */
-$entity = new DBEntity($db_wrapper, "nerdstart_prova", "nerd_id");
+$entity = new DBEntity($db_wrapper, "test_table", "test_id");
 
-//setto un nuovo valore
-$entity->set("prova_testo", "Hello World!");
-$entity->set("prova_numero", 4);
+//insert a new string value
+$entity->set("test_string", "Hello World!");
+//insert a new number value
+$entity->set("test_number", 4);
 
-//prova JSON
+//test JSON rappresentation of the data
 echo "JSON: " . $entity->getJSON();
 
 //salvo il nuovo record
 try{
 	$entity->store();
-	echo "<br/>Elemento aggiunto<br /><br />";
+	echo "<br/>New Entity add<br /><br />";
 }catch (DBException $e){
 	echo $e->getMessage();
 }
 
 //cambio un valore dell'oggetto
-$entity->set("prova_numero", 5);
+$entity->set("test_number", 5);
 
-//salvo i cambiamenti
+//save changes
 $entity->commit();
 
+//delete the entity
 $entity->cancel();
 ?>
